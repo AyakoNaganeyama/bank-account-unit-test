@@ -1,50 +1,77 @@
-# Welcome to your Expo app 👋
+# Bank Account App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A simple **Bank Account application** implemented in TypeScript.
+Allows users to manage a bank account by depositing and debiting money, as well as updating the account holder's name. The main purpose of this app is to practice unit testing by implementing a basic BankAccount class and writing tests for its core functionalities.
 
-## Get started
+---
 
-1. Install dependencies
+## Features
 
-   ```bash
-   npm install
-   ```
+- Deposit money into the account
+- Debit money from the account
+- Validate invalid operations (e.g., negative or zero amounts, overdraft)
+- Update account holder name
+- Display account holder name and current balance
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## Project Structure
 
-In the output, you'll find options to open the app in a
+app/
+├── api/
+│ └── bankaccount.ts # BankAccount class and constants
+├── **tests**/
+│ └── BankAccount.test.ts # Unit tests for BankAccount
+└── App.tsx # Main App component
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## BankAccount Class
 
-## Get a fresh project
+The `BankAccount` class includes:
 
-When you're ready, run:
+- `deposit(amount: number)`: Adds the amount to balance. Throws an error for invalid amounts.
+- `debit(amount: number)`: Subtracts the amount from balance. Throws an error for invalid amounts or insufficient balance.
+- `getBalance()`: Returns the current balance.
+- `updateHolderName(name: string)`: Updates the account holder's name.
 
-```bash
-npm run reset-project
-```
+**Constants:**
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- `INSUFFICIENT_BALANCE`: Error message for overdraft attempts.
+- `WRONG_AMOUNT`: Error message for invalid deposit/debit amounts.
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## Testing
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+This project uses **Jest** for unit testing.
 
-## Join the community
+### What was tested
 
-Join our community of developers creating universal apps.
+- **Deposit functionality**
+  - Deposit valid amounts
+  - Deposit invalid amounts (0 or negative)
+- **Debit functionality**
+  - Debit valid amounts
+  - Debit invalid amounts (0, negative, or more than balance)
+- **Update account holder name**
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+> Each test checks a **single behavior** of the `BankAccount` class in **isolation**, which qualifies as **unit testing**.
+
+### Example Test Cases
+
+| Test Case                           | Description                            |
+| ----------------------------------- | -------------------------------------- |
+| Deposit valid amount                | Adds a valid amount to the balance     |
+| Deposit invalid amount (0/negative) | Throws `WRONG_AMOUNT` error            |
+| Debit valid amount                  | Subtracts a valid amount from balance  |
+| Debit invalid amount (0/negative)   | Throws `WRONG_AMOUNT` error            |
+| Debit more than balance             | Throws `INSUFFICIENT_BALANCE` error    |
+| Update account holder name          | Changes the name of the account holder |
+
+### Test Results
+
+All tests passed successfully:
+
+![alt text](image.png)
+# bank-account-unit-test
