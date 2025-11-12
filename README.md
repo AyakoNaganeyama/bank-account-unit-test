@@ -1,7 +1,7 @@
 # Bank Account App
 
 A simple **Bank Account application** implemented in TypeScript.
-Allows users to manage a bank account by depositing and debiting money, as well as updating the account holder's name. The main purpose of this app is to practice unit testing by implementing a basic BankAccount class and writing tests for its core functionalities.
+Allows users to manage a bank account by depositing and debiting money, as well as updating the account holder's name. TThe main purpose of this app is to practice **unit testing** using **Jest** by implementing a basic `BankAccount` class and writing tests for its core functionalities.
 
 ---
 
@@ -17,12 +17,7 @@ Allows users to manage a bank account by depositing and debiting money, as well 
 
 ## Project Structure
 
-app/
-├── api/
-│ └── bankaccount.ts # BankAccount class and constants
-├── **tests**/
-│ └── BankAccount.test.ts # Unit tests for BankAccount
-└── App.tsx # Main App component
+![alt text](image-1.png)
 
 ---
 
@@ -74,4 +69,5 @@ This project uses **Jest** for unit testing.
 All tests passed successfully:
 
 ![alt text](image.png)
+
 # bank-account-unit-test
